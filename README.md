@@ -86,16 +86,10 @@ Configurar datos del usuario de git (el comando symfony new crea un nuevo reposi
         git config --global user.name "Your Name"
         git config --global credential.helper 'cache --timeout 3600'
 
-Creamos la aplicación
+Descargamos la aplicación
 
-        root@3fa9b676624c:/var/www/symfony# symfony new sharedcar
-        * Creating a new Symfony project with Composer
-          (running /usr/local/bin/composer create-project symfony/skeleton /var/www/symfony/sharedcar  --no-interaction)
+        git clone https://github.com/davidbermudez/sharedcar.git 
+        
+Instalamos vendors
 
-        * Setting up the project under Git version control
-          (running git init /var/www/symfony/sharedcar)
-
-
-         [OK] Your project is now ready in /var/www/symfony/sharedcar
-
-        root@3fa9b676624c:/var/www/symfony#
+        composer install
