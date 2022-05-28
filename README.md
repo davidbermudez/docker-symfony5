@@ -71,6 +71,7 @@ Si todo ha ido bien tendremos tres contenedores funcionando:
         docker ps --format "table {{.ID}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"
         CONTAINER ID   STATUS          PORTS                                                                        NAMES
         437aad26b21f   Up 31 minutes   0.0.0.0:8000->80/tcp, :::8000->80/tcp, 0.0.0.0:8443->443/tcp, :::8443->443/tcp    sharedcar_nginx
+        cfc39947f8d0   Up 31 minutes   0.0.0.0:8080->80/tcp                                                              sharedcar_phpmyadmin
         b68c91b63ac8   Up 31 minutes   9000/tcp                                                                          sharedcar_php
         90c266d4ff62   Up 31 minutes   3306/tcp                                                                          sharedcar_db
 
