@@ -1,0 +1,73 @@
+version: '3.7'
+
+services:
+  db:
+    image: mariadb:latest
+    container_name: ${APP_NAME}_db
+    environment: # env
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - sql:/var/lib/mysql/
+    networks:
+      - ${APP_NAME}_net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: ${APP_NAME}_phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: db # Same name that the database service, here db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # Same password as MYSQL_ROOT_PASSWORD
+    networks:
+      - ${APP_NAME}_net # You see here the same network as the service db
+
+  php:
+    container_name: ${APP_NAME}_php
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: 1
+    volumes:
+      - files:/var/www/symfony
+    networks:
+      - ${APP_NAME}_net
+
+  nginx:
+    container_name: ${APP_NAME}_nginx
+    depends_on:
+      - php # We need to load PHP for the Nginx configuration file
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
+    ports:
+      - 8000:80 # Redirect Docker port 80 to localhost port 8000. So you'll access to Nginx with localhost:8000
+      - 8443:443 # Same for HTTPS
+    volumes:
+      - files:/var/www/symfony
+    networks:
+      - ${APP_NAME}_net
+
+networks:
+  sharedcar_net:
+
+volumes:
+  files: # Same name as inside the container php
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: home/ubuntu/symfony/files # Change with the project path on your computer
+  sql:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: home/ubuntu/symfony/database # Change with the project path on your computer
