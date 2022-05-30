@@ -115,7 +115,11 @@ Instala las dependencias
 
         symfony composer install
 
-## A partir de ahora, tú solo
+## Configurar la base de datos
+
+Verifica la IP de tu contenedor docker `my-project_db` y utiliza las variables declaradas en `.env` para editar el archivo `.env.local` de tu proyecto en symfony:
+
+        DATABASE_URL="mysql://the-fast-track:pass_user@172.19.0.2:3306/the-fast-track?serverVersion=5.7&charset=utf8mb4"
 
 ### Recomendaciones:
 
