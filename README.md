@@ -19,7 +19,7 @@ Todo el proyecto se encuentra mapeado en nuestro directorio local `./files` (pro
 
 ## Descarga
 
-git clone https://github.com/davidbermudez/sharedcar-docker.git tu-proyecto
+        git clone https://github.com/davidbermudez/sharedcar-docker.git tu-proyecto
 
 ## Orquestando los contenedores
 
