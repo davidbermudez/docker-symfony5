@@ -32,8 +32,13 @@ git clone https://github.com/davidbermudez/sharedcar-docker.git tu-proyecto
         MYSQL_USER=compartecoche
         MYSQL_PASSWORD=YourUserPass
         MYSQL_DATABASE=compartecoche_db
+        
+### Crea los siguientes directorios
 
-Verifica que tienes la siguiente estructura de archivos. En caso contrario crea los directorios correspondientes:
+        `files/`
+        `database/`
+        
+Verifica que tienes la siguiente estructura de archivos: 
 
         .
         ├── Dockerfile-nginx
@@ -45,7 +50,7 @@ Verifica que tienes la siguiente estructura de archivos. En caso contrario crea 
         ├── files
         └── docker-compose.yml
         
-El directorio `files` está mapeado a tu directorio local, y se encuentra dentro del .gitignore de este repositorio. Dentro de `files` tendrás otro repositorio que contendrá tu proyecto en Symfony
+`files` está fuera de este repositorio porque es el directorio mapeado con el directorio de trabajo del contenedor. Dentro de `files` tendrás otro repositorio independiente que contendrá tu proyecto en Symfony.
 
 ### Construir las imágenes y lanzar los contenedores:
 
