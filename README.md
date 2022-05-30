@@ -1,46 +1,20 @@
 # sharedcar-docker
 
+## Descarga
+
+git clone https://github.com/davidbermudez/sharedcar-docker.git tu-proyecto
+
 ## Orquestando los contenedores
 
-### Crea los siguientes archivos:
+### Crea el siguiente archivo:
 
-1. .env
+.env
 
         APP_NAME=sharedcar
         MYSQL_ROOT_PASSWORD=YourRootPass
         MYSQL_USER=compartecoche
         MYSQL_PASSWORD=YourUserPass
         MYSQL_DATABASE=compartecoche_db
-
-2. build/nginx/default.conf
-
-        server {
-            listen 80;
-
-            #listen 443 ssl;
-            #listen [::]:443 ssl;
-            #ssl_certificate /etc/ssl/certs/localhost.crt;
-            #ssl_certificate_key /etc/ssl/private/localhost.key;
-
-            root /var/www/symfony/public;
-            server_name localhost;
-
-            index index.php index.html;
-
-            location / {
-                try_files $uri /index.php$is_args$args;
-            }
-
-            location ~ \.php$ {
-                fastcgi_pass php:9000; # Same name as the PHP service (php)
-                fastcgi_index index.php;
-                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                include fastcgi_params;
-            }
-
-            error_log /var/log/nginx/myapp.error.log;
-            access_log /var/log/nginx/myapp.access.log;
-        }
 
 Verifica que tienes la siguiente estructura de archivos. En caso contrario crea los directorios correspondientes:
 
