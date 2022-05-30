@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Este repositorio configura 4 contenedores para montar un entorno adecuado para un nuevo proyecto de Symfony 5
+Este repositorio configura 4 contenedores para montar un entorno adecuado para un nuevo proyecto de Symfony 5. 
 
 Los contenedores son los siguientes:
 
@@ -32,7 +32,7 @@ Todo el proyecto se encuentra mapeado en nuestro directorio local `./files` (pro
         MYSQL_USER=compartecoche
         MYSQL_PASSWORD=YourUserPass
         MYSQL_DATABASE=compartecoche_db
-        PATH-TO-PROJECT=full-path-to-project-in-local # /home/user/my-project
+        PATH_TO_PROJECT=full-path-to-project-in-local # /home/user/my-project
         
 ### Crea los siguientes directorios
 
@@ -53,7 +53,9 @@ Verifica que tienes la siguiente estructura de archivos:
         
 `files` está fuera de este repositorio porque es el directorio mapeado con el directorio de trabajo del contenedor. Dentro de `files` tendrás otro repositorio independiente que contendrá tu proyecto en Symfony.
 
-**Importante:** En el archivo de configuración de nginx `build/nginx/default.conf` recuerda cambiar el root por el nombre de tu proyecto
+### Configura nginx
+
+En el archivo de configuración de nginx `build/nginx/default.conf` recuerda cambiar el root por el nombre de tu proyecto
 
         ...
         root /var/www/symfony/my-project/public;
