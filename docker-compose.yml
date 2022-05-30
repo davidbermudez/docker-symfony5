@@ -12,7 +12,7 @@ services:
     volumes:
       - sql:/var/lib/mysql/
     networks:
-      - ${APP_NAME}_net
+      - my_project_net
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -25,7 +25,7 @@ services:
       PMA_HOST: db # Same name that the database service, here db
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD} # Same password as MYSQL_ROOT_PASSWORD
     networks:
-      - ${APP_NAME}_net # You see here the same network as the service db
+      - my_project_net
 
   php:
     container_name: ${APP_NAME}_php
@@ -40,7 +40,7 @@ services:
     volumes:
       - files:/var/www/symfony
     networks:
-      - ${APP_NAME}_net
+      - my_project_net
 
   nginx:
     container_name: ${APP_NAME}_nginx
@@ -55,10 +55,10 @@ services:
     volumes:
       - files:/var/www/symfony
     networks:
-      - ${APP_NAME}_net
+      - my_project_net
 
 networks:
-  sharedcar_net:
+  my_project_net:
 
 volumes:
   files: # Same name as inside the container php
