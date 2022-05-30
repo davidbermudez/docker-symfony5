@@ -32,6 +32,7 @@ git clone https://github.com/davidbermudez/sharedcar-docker.git tu-proyecto
         MYSQL_USER=compartecoche
         MYSQL_PASSWORD=YourUserPass
         MYSQL_DATABASE=compartecoche_db
+        PATH-TO-PROJECT=full-path-to-project-in-local # /home/user/my-project
         
 ### Crea los siguientes directorios
 
