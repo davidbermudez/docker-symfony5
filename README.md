@@ -36,8 +36,8 @@ Todo el proyecto se encuentra mapeado en nuestro directorio local `./files` (pro
         
 ### Crea los siguientes directorios
 
-        `files/`
-        `database/`
+        files/
+        database/
         
 Verifica que tienes la siguiente estructura de archivos: 
 
