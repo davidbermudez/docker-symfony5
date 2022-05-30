@@ -25,9 +25,9 @@ git clone https://github.com/davidbermudez/sharedcar-docker.git tu-proyecto
 
 ### Crea el siguiente archivo:
 
-.env
+`.env`
 
-        APP_NAME=your-project
+        APP_NAME=my-project
         MYSQL_ROOT_PASSWORD=YourRootPass
         MYSQL_USER=compartecoche
         MYSQL_PASSWORD=YourUserPass
@@ -53,6 +53,12 @@ Verifica que tienes la siguiente estructura de archivos:
         
 `files` está fuera de este repositorio porque es el directorio mapeado con el directorio de trabajo del contenedor. Dentro de `files` tendrás otro repositorio independiente que contendrá tu proyecto en Symfony.
 
+**Importante:** En el archivo de configuración de nginx `build/nginx/default.conf` recuerda cambiar el root por el nombre de tu proyecto
+
+        ...
+        root /var/www/symfony/my-project/public;
+        ...
+
 ### Construir las imágenes y lanzar los contenedores:
 
 Vamos a crear las imágenes definidas en Dockerfile-ngnix y Dockerfile-php:
@@ -69,10 +75,10 @@ Si todo ha ido bien tendremos a los cuatro contenedores funcionando:
 
         docker ps --format "table {{.ID}}\t{{.Status}}\t{{.Ports}}\t{{.Names}}"
         CONTAINER ID   STATUS          PORTS                                                                        NAMES
-        437aad26b21f   Up 31 minutes   0.0.0.0:8000->80/tcp, :::8000->80/tcp, 0.0.0.0:8443->443/tcp, :::8443->443/tcp    your-project_nginx
-        cfc39947f8d0   Up 31 minutes   0.0.0.0:8080->80/tcp                                                              your-project_phpmyadmin
-        b68c91b63ac8   Up 31 minutes   9000/tcp                                                                          your-project_php
-        90c266d4ff62   Up 31 minutes   3306/tcp                                                                          your-project_db
+        437aad26b21f   Up 31 minutes   0.0.0.0:8000->80/tcp, :::8000->80/tcp, 0.0.0.0:8443->443/tcp, :::8443->443/tcp    my-project_nginx
+        cfc39947f8d0   Up 31 minutes   0.0.0.0:8080->80/tcp                                                              my-project_phpmyadmin
+        b68c91b63ac8   Up 31 minutes   9000/tcp                                                                          my-project_php
+        90c266d4ff62   Up 31 minutes   3306/tcp                                                                          my-project_db
 
 Accedemos al contenedor `your-project_php`
 
