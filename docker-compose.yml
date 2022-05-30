@@ -66,10 +66,10 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: /home/david/symfony5/files # Change with the project path on your computer
+      device: ${PATH-TO-PROJECT}/files # Change with the project path on your computer
   sql:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: /home/david/symfony5/database # Change with the project path on your computer
+      device: ${PATH-TO-PROJECT}/database # Change with the project path on your computer
