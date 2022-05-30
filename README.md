@@ -71,7 +71,7 @@ Por último, lanzamos los contenedores:
 
         docker-compose up -d
 
-## Crear el proyecto de symfony:
+## Preparando tu entorno de symfony:
 
 Si todo ha ido bien tendremos a los cuatro contenedores funcionando:
 
@@ -93,8 +93,32 @@ Configurar datos del usuario de git (el comando `symfony new` crea un nuevo repo
         git config --global user.name "Your Name"
         git config --global credential.helper 'cache --timeout 3600'
 
-Iniciar un nuevo proyecto de Symfony 5
+## Iniciar un nuevo proyecto o clonar uno existente
+
+### Iniciar un nuevo proyecto de Symfony 5
 
         symfony new tu-proyecto --full
         
 (Automáticamente te generará un nuevo repositorio de git dentro del contenedor)
+
+### Clonar
+
+En el directorio /var/www/symfony de tu contenedor clonar el proyecto desde GitHub:
+
+        git clone https://github.com/davidbermudez/the-fast-track.git
+        
+Accede al directorio
+
+        cd the-fast-track
+
+Instala las dependencias
+
+        symfony composer install
+
+## A partir de ahora, tú solo
+
+### Recomendaciones:
+
+- Crea una nueva rama y desarrolla en ella. Pasa sólo a producción (rama `main`) cuando compruebes que todo funciona
+
+**¡Ya tienes tu proyecto Symfony funcionando!**
