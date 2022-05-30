@@ -1,5 +1,22 @@
 # sharedcar-docker
 
+## Introducción
+
+Este proyecto configura 4 contenedores para montar un entorno adecuado para un nuevo proyecto de Symfony 5
+
+Los contenedores son los siguientes:
+
+- nginx:latest
+- php:7.4-fpm
+- mariadb:latest
+- phpmyadmin/phpmyadmin:latest
+
+**nginx** y **php** son creados a partir de un Dockerfile que les incluye lo necesario para Symfony. Después los 4 son puestos en marcha por el '''docker-composer.yml'''
+
+El directorio de trabajo en el contenedor (WORKDIR) es '''/var/www/symfony'''
+
+Todo el proyecto se encuentra mapeado en nuestro directorio local '''./files''' (proyecto symfony) y '''./database''' (archivos de datos)
+
 ## Descarga
 
 git clone https://github.com/davidbermudez/sharedcar-docker.git tu-proyecto
@@ -54,17 +71,14 @@ Accedemos al contenedor php
         docker exec -it sharedcar_php bash
         root@3fa9b676624c:/var/www/symfony#
         
-
-Configurar datos del usuario de git (el comando symfony new crea un nuevo repositorio)
+Configurar datos del usuario de git (el comando '''symfony new''' crea un nuevo repositorio)
 
         git config --global user.email "you@example.com"
         git config --global user.name "Your Name"
         git config --global credential.helper 'cache --timeout 3600'
 
-Descargamos la aplicación
+Iniciar un nuevo proyecto de Symfony 5
 
-        git clone https://github.com/davidbermudez/sharedcar.git 
+        symfony new tu-proyecto --full
         
-Instalamos vendors
-
-        composer install
+(Automáticamente te generará un nuevo repositorio de git dentro del contenedor)
