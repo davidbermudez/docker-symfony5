@@ -50,8 +50,8 @@ services:
       context: .
       dockerfile: Dockerfile-nginx
     ports:
-      - 8000:80 # Redirect Docker port 80 to localhost port 8000. So you'll access to Nginx with localhost:8000
-      - 8443:443 # Same for HTTPS
+      - 80:80 # Redirect Docker port 80 to localhost port local
+      - 443:443 # Same for HTTPS
     volumes:
       - files:/var/www/symfony
     networks:
@@ -66,10 +66,10 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: ${PATH-TO-PROJECT}/files # Change with the project path on your computer
+      device: ${PATH_TO_PROJECT}/files # Change with the project path on your computer
   sql:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: ${PATH-TO-PROJECT}/database # Change with the project path on your computer
+      device: ${PATH_TO_PROJECT}/database # Change with the project path on your computer
