@@ -143,4 +143,6 @@ Verifica la IP de tu contenedor docker `my-project_db` y utiliza las variables d
 
 - Crea una nueva rama y desarrolla en ella. Pasa sólo a producción (rama `main`) cuando compruebes que todo funciona
 
+Si no has cambiado el valor de los puertos en `docker-compose.yml` tendrás la aplicación funcionando en http://localhost:4444/ (Si has desplegado en remoto, configura un puerto que puedas abrir y utiliza la IP de tu instancia)
+
 **¡Ya tienes tu proyecto Symfony funcionando!**
