@@ -12,15 +12,15 @@ Los contenedores son los siguientes:
 - `mariadb:latest`
 - `phpmyadmin/phpmyadmin:latest`
 
-**nginx** y **php** son creados a partir de las imágenes definidas en los Dockerfile's `Dockerfile-ngnix` y `Dockerfile-php` que les incluye lo necesario para Symfony. Después el fichero `docker-composer.yml` crea la red y los volúmenes necesarios para que todo funcione.
+**nginx** y **php** son creados a partir de las imágenes definidas en los Dockerfile's `Dockerfile-ngnix` y `Dockerfile-php` que les añade Composer y los módulos de php necesarios para Symfony5. Después el fichero `docker-composer.yml` crea la red y los volúmenes necesarios para que todo funcione.
 
 ## Pasos previos
 
-Lo primero es **crear un directorio** en la máquina local o remota desde donde se van a correr la aplicación. Por ejemplo: `/home/user/symfony-project`.
+Lo primero es **crear un directorio** en la máquina local o remota desde donde va a correr la aplicación. Por ejemplo: `/home/user/symfony-project`.
 
-A continuación nos situamos en dicho directorio y **descargamos** (hacemos clone) desde github este repositorio
+A continuación nos situamos en dicho directorio y **descargamos** (hacemos clone) desde github, el contenido de este repositorio.
 
-        git clone https://github.com/davidbermudez/sharedcar-docker.git my-project
+        git clone https://github.com/davidbermudez/docker-symfony.git my-project
         
 ### Crea el archivo y los directorios siguientes:
 
@@ -32,7 +32,7 @@ Crea en el raiz de tu proyecto un archivo de configuración con el nombre `.env`
         MYSQL_ROOT_PASSWORD=YourRootPass
         MYSQL_USER=my-project-user
         MYSQL_PASSWORD=YourUserPass
-        MYSQL_DATABASE=my-project_db
+        MYSQL_DATABASE=db_name
         PATH_TO_PROJECT=full-path-to-project-in-local # /home/user/symfony-project/my-project/
         
 ### Crea los siguientes directorios
@@ -85,7 +85,7 @@ Docker-compose crea una red interna con IP fijas para los 4 contenedores:
         my-project_php         172.20.0.4
         my-project_nginx       172.20.0.5
         
-Importante la IP del contenedor de la base de datos, porque nos hará falta más adelante
+Es importante que las IP sean fijas para evitar tener que modificar el archivo de configuración con los datos de conexión a la base de datos.
 
 ## Preparando tu entorno de Symfony 5:
 
@@ -119,23 +119,25 @@ Configurar datos del usuario de git (el comando `symfony new` crea un repositori
 
 ### Clonar
 
-En el directorio /var/www/symfony de tu contenedor clonar el proyecto desde GitHub:
+Si ya tienes un proyecto de Symfony, puedes hacerlo funcionar en tu entorno, clonando el repositorio donde lo tengas alojado al directorio /var/www/symfony del contenedor nginx:
 
-        git clone https://github.com/davidbermudez/the-fast-track.git
+        docker exec -it my-project_nginx bash
+        root@2ea7bc4565fc:/# cd /var/www/symfony
+        root@2ea7bc4565fc:/var/www/symfony# git clone https://github.com/usergithub/your-repository.git
         
 Accede al directorio
 
-        cd the-fast-track
+        root@2ea7bc4565fc:/var/www/symfony# cd your-repository
 
 Instala las dependencias
 
-        symfony composer install
+        root@2ea7bc4565fc:/var/www/symfony/your-repository# composer install
 
 ## Configurar la base de datos
 
 Verifica la IP de tu contenedor docker `my-project_db` y utiliza las variables declaradas en `.env` para editar el archivo `.env.local` de tu proyecto en symfony (Recuerda la IP del contenedor de base de datos:
 
-        DATABASE_URL="mysql://the-fast-track:pass_user@172.20.0.2:3306/the-fast-track?serverVersion=mariadb.10.8.3&charset=utf8mb4"
+        DATABASE_URL="mysql://my-project-user:YourUserPass@172.20.0.2:3306/the-fast-track?db_name=mariadb.10.8.3&charset=utf8mb4"
 
 ### Recomendaciones:
 
