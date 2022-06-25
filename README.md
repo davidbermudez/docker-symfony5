@@ -121,7 +121,7 @@ Configurar datos del usuario de git (el comando `symfony new` crea un repositori
 
 Si ya tienes un proyecto de Symfony, puedes hacerlo funcionar en tu entorno, clonando el repositorio donde lo tengas alojado al directorio /var/www/symfony del contenedor nginx:
 
-        docker exec -it my-project_nginx bash
+        docker exec -it my-project_php bash
         root@2ea7bc4565fc:/# cd /var/www/symfony
         root@2ea7bc4565fc:/var/www/symfony# git clone https://github.com/usergithub/your-repository.git
         
@@ -131,13 +131,13 @@ Accede al directorio
 
 Instala las dependencias
 
-        root@2ea7bc4565fc:/var/www/symfony/your-repository# composer install
+        root@2ea7bc4565fc:/var/www/symfony/your-repository# composer install (o composer install --no-dev --optimize-autoloader si estás en producción)
 
 ## Configurar la base de datos
 
 Verifica la IP de tu contenedor docker `my-project_db` y utiliza las variables declaradas en `.env` para editar el archivo `.env.local` de tu proyecto en symfony (Recuerda la IP del contenedor de base de datos:
 
-        DATABASE_URL="mysql://my-project-user:YourUserPass@172.20.0.2:3306/the-fast-track?db_name=mariadb.10.8.3&charset=utf8mb4"
+        DATABASE_URL="mysql://my-project-user:YourUserPass@172.20.0.2:3306/db_name?serverVersion=mariadb.10.8.3&charset=utf8mb4"
 
 ### Recomendaciones:
 
