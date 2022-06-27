@@ -23,3 +23,6 @@ RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 # Set the default directory inside the container
 WORKDIR /var/www/symfony
+
+RUN chmod 755 /var/www/symfony
+RUN chown www-data:www-data /var/www/symfony
