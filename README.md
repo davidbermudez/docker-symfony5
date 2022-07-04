@@ -16,7 +16,7 @@ Los contenedores son los siguientes:
 
 ## Pasos previos
 
-Lo primero es **crear un directorio** en la máquina local o remota desde donde va a correr la aplicación. Por ejemplo: `/home/user/symfony-project`.
+Lo primero es **crear un directorio** en la máquina local o remota desde donde va a correr la aplicación. Por ejemplo: `/home/user/my-project`.
 
 A continuación nos situamos en dicho directorio y **descargamos** (hacemos clone) desde github, el contenido de este repositorio.
 
