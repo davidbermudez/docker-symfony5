@@ -48,6 +48,7 @@ Verifica que tienes la siguiente estructura de archivos:
         ├── build
         │   └── nginx
         │       └── default.conf
+        │       └── nginx.conf
         ├── database
         ├── files
         └── docker-compose.yml
